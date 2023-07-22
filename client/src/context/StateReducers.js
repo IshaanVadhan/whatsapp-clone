@@ -11,6 +11,10 @@ export const initialState = {
     userContacts: [],
     onlineUsers: [],
     filteredContacts: [],
+    videoCall: undefined,
+    voiceCall: undefined,
+    incomingVideoCall: undefined,
+    incomingVoiceCall: undefined,
 };
 
 const reducer = (state, action) => {
@@ -81,6 +85,45 @@ const reducer = (state, action) => {
                 ...state,
                 contactSearch: action.contactSearch,
                 filteredContacts,
+            };
+
+        case reducerCases.SET_VIDEO_CALL:
+            return {
+                ...state,
+                videoCall: action.videoCall,
+            };
+
+        case reducerCases.SET_VOICE_CALL:
+            return {
+                ...state,
+                voiceCall: action.voiceCall,
+            };
+
+        case reducerCases.SET_INCOMING_VIDEO_CALL:
+            return {
+                ...state,
+                incomingVideoCall: action.incomingVideoCall,
+            };
+
+        case reducerCases.SET_INCOMING_VOICE_CALL:
+            return {
+                ...state,
+                incomingVoiceCall: action.incomingVoiceCall,
+            };
+
+        case reducerCases.END_CALL:
+            return {
+                ...state,
+                voiceCall: undefined,
+                videoCall: undefined,
+                incomingVoiceCall: undefined,
+                incomingVideoCall: undefined,
+            };
+
+        case reducerCases.SET_EXIT_CHAT:
+            return {
+                ...state,
+                currentChatUser: undefined,
             };
 
         default:

@@ -3,20 +3,20 @@ import { reducerCases } from "@/context/constants";
 import Image from "next/image";
 import React from "react";
 
-function IncomingVideoCall() {
-  const [{incomingVideoCall, socket}, dispatch] = useStateProvider();
+function IncomingVoiceCall() {
+  const [{incomingVoiceCall, socket}, dispatch] = useStateProvider();
 
   const acceptCall = () => {
-    dispatch({type: reducerCases.SET_VIDEO_CALL, videoCall: {
-      ...incomingVideoCall,
+    dispatch({type: reducerCases.SET_VOICE_CALL, voiceCall: {
+      ...incomingVoiceCall,
       type: "in-coming",
     }});
-    socket.current.emit("accept-incoming-call", {id: incomingVideoCall.id});
-    dispatch({type: reducerCases.SET_INCOMING_VIDEO_CALL, incomingVideoCall: undefined});
+    socket.current.emit("accept-incoming-call", {id: incomingVoiceCall.id});
+    dispatch({type: reducerCases.SET_INCOMING_VOICE_CALL, incomingVoiceCall: undefined});
   }
 
   const rejectCall = () => {
-    socket.current.emit("reject-video-call", {from: incomingVideoCall.id});
+    socket.current.emit("reject-voice-call", {from: incomingVoiceCall.id});
     dispatch({type: reducerCases.END_CALL});
   }
 
@@ -24,7 +24,7 @@ function IncomingVideoCall() {
     <div className="h-24 w-80 fixed bottom-8 mb-0 right-6 z-50 rounded-sm flex gap-5 items-center justify-start p-4 bg-conversation-panel-background text-white drop-shadow-2xl border-icon-green border-2 py-14">
       <div>
         <Image
-          src={incomingVideoCall.profilePicture}
+          src={incomingVoiceCall.profilePicture}
           alt="avatar"
           width={70}
           height={70}
@@ -33,10 +33,10 @@ function IncomingVideoCall() {
       </div>
       <div>
         <div>
-          {incomingVideoCall.name}
+          {incomingVoiceCall.name}
         </div>
         <div className="text-xs">
-          Incoming Video Call
+          Incoming Voice Call
         </div>
         <div className="flex gap-2 mt-2">
           <button
@@ -57,4 +57,4 @@ function IncomingVideoCall() {
   );
 }
 
-export default IncomingVideoCall;
+export default IncomingVoiceCall;
