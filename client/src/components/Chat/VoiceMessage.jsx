@@ -91,7 +91,7 @@ function VoiceMessage({message}) {
       <div>
         <Avatar
           type="lg"
-          image={currentChatUser.profilePicture}
+          image={message.senderId === currentChatUser.id ? currentChatUser.profilePicture : userInfo.profileImage}
         />
       </div>
       <div className="cursor-pointer text-xl">
