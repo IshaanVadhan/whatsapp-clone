@@ -37,7 +37,7 @@ function onboarding() {
           dispatch({type: reducerCases.SET_NEW_USER, newUser: false});
           dispatch({
             type: reducerCases.SET_USER_INFO,
-            userInfo: {id: data.id,name, email, profileImage: image, status: about},
+            userInfo: {id: data.user.id,name, email, profileImage: image, status: about},
           });
           router.push("/");
         }
